@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Healthbar extends JPanel implements MouseListener {
     private Friend myFriend;
@@ -30,12 +31,18 @@ public class Healthbar extends JPanel implements MouseListener {
         g.fillRect(10, 50, myFriend.GetHP(), 200);
         g.fillRect(10, 300, myEnemy.GetHP(), 200);
     }
+    double randomNumber = ThreadLocalRandom.current().nextInt(1, 10 + 1);
 
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        myFriend.DMG(0.1 * 500);
-        myEnemy.DMG(0.1 * 500);
+        randomNumber = ThreadLocalRandom.current().nextInt(1, 10 + 1);
+
+        myFriend.DMG((randomNumber / 100) * 500);
+
+        randomNumber = ThreadLocalRandom.current().nextInt(1, 10 + 1);
+
+        myEnemy.DMG((randomNumber / 100) * 500);
         repaint();
     }
 
